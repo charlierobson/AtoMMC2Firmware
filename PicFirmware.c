@@ -190,9 +190,14 @@ void main(void)
    TRISB = ReadEEPROM(EE_PORTBTRIS);
 
 	INTCON2bits.RBPU=0;
-	
+
    at_initprocessor();
 
+   // Delay for 80ms if IRQ initialization is being used
+   if (configByte & 0x20) {
+      Delay10KTCYx(80);
+   }
+   // Always release IRQ at this point
    RELEASEIRQ();
 
     _asm nop _endasm;
