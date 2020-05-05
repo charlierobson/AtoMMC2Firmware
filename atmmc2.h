@@ -56,6 +56,9 @@ typedef struct
 {
    char filename[13];
    unsigned char attribs;
+#if (PLATFORM==PLATFORM_EMU)
+   FIL fp
+#endif
 }
 imgInfo;
 
